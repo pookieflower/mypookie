@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheer Up!</title>
+    <style>
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #ff69b4;
+        }
+
+        p {
+            color: #4682b4;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #message, #loveNote {
+            font-size: 1.2em;
+            margin-top: 20px;
+            min-height: 60px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .memory {
+            text-align: center;
+        }
+
+        .memory img {
+            width: 100px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .caption {
+            margin-top: 5px;
+            font-size: 1em;
+            color: #4682b4;
+        }
+
+        #finalMessage {
+            font-size: 1.2em;
+            color: #ff69b4;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContainer" class="container">
+        <h1>Hello Pookiee</h1>
+        <p>Just a little something to brighten your day! 🌸</p>
+        <button id="surpriseButton">Click me</button>
+        <div id="surprise" class="hidden">
+            <p id="message">You are amazing and loved! 💖</p>
+        </div>
+        <button id="nextButton" class="hidden">NEXT</button>
+        <div id="noteSection" class="hidden">
+            <button id="noteButton">Click to get a beautiful note you might like it</button>
+            <p id="loveNote"></p>
+        </div>
+    </div>
+    
+    <div id="galleryContainer" class="container hidden">
+        <h1>Some Good Memories</h1>
+        <div class="gallery">
+            <div class="memory">
+                <img src="1.jpg" alt="Memory 1">
+                <p class="caption">Our first photo together</p>
+            </div>
+            <div class="memory">
+                <img src="2.jpg" alt="Memory 2">
+                <p class="caption">The message I wrote for you</p>
+            </div>
+            <div class="memory">
+                <img src="3.jpg" alt="Memory 3">
+                <p class="caption">A fun day out - You were happy!</p>
+            </div>
+            <div class="memory">
+                <img src="4.jpg" alt="Memory 4">
+                <img src="5.jpg" alt="Memory 5">
+                <p class="caption">Anand Day Out</p>
+            </div>
+        </div>
+        <p id="finalMessage" class="hidden">Hope you liked it...! Thank you, Pookiee! Be happy! 💖</p>
+    </div>
+
+    <script>
+        const messages = [
+            "You are amazing and loved! 💖",
+            "You are a ray of sunshine on a cloudy day. ☀️",
+            "Your smile lights up the world. 😊",
+            "You are stronger than you think. 💪",
+            "Believe in yourself; you're capable of amazing things! 🌟",
+            "Your kindness makes the world a better place. 💖",
+            "You deserve all the happiness in the world. 🌈",
+            "You are appreciated more than you know. 🌷",
+            "Keep going; your perseverance is inspiring. 🚀",
+            "You bring joy to everyone around you. 🎉",
+        ];
+
+        const loveNotes = [
+            "You're stronger than any cramps : sending you all the comfort and good vibes! 💕",
+            "Rest up, snack up, and let the world wait—you deserve it! 🍫✨",
+            "Even on tough days, you shine brighter than the sun! ☀️💖",
+            "Your body may be complaining, but I hope your heart is smiling today! 😊💕",
+            "Remember, self-care isn’t selfish—take it easy and be kind to yourself! 🌸💛",
+            "Here’s your official pass to binge-watch, snack, and relax! 🎬🍕",
+            "You’re amazing every day, but today, you deserve extra love and rest! 💖🌷"
+        ];
+
+        let currentIndex = 0;
+        let noteIndex = 0;
+
+        document.getElementById('surpriseButton').addEventListener('click', function() {
+            document.getElementById('surprise').classList.remove('hidden');
+            document.getElementById('message').textContent = messages[currentIndex];
+            currentIndex++;
+            if (currentIndex === messages.length) {
+                document.getElementById('nextButton').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', function() {
+            document.getElementById('nextButton').classList.add('hidden');
+            document.getElementById('noteSection').classList.remove('hidden');
+        });
+
+        document.getElementById('noteButton').addEventListener('click', function() {
+            document.getElementById('loveNote').textContent = loveNotes[noteIndex];
+            noteIndex++;
+            if (noteIndex === loveNotes.length) {
+                document.getElementById('mainContainer').classList.add('hidden');
+                document.getElementById('galleryContainer').classList.remove('hidden');
+                document.getElementById('finalMessage').classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
